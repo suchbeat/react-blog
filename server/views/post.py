@@ -1,9 +1,10 @@
 
-from flask import jsonify
+from flask import jsonify, request
 from flask.views import MethodView
 
 from sqlalchemy import desc
 
+from server.extensions import db
 from server.models.post import Post
 
 
@@ -17,3 +18,13 @@ class PostView(MethodView):
             post = Post.query.filter_by(id=post_id).first()
             result = jsonify(data=post.serialize())
         return result
+
+    def post(self, post_id):
+        if not request.json.get('title'):
+            return jsonify({'error': 'Bad request'}), 400
+        if not request.json.get('content'):
+            return jsonify({'error': 'Bad request'}), 400
+        post = Post(request.json['title'], request.json['content'])
+        db.session.add(post)
+        db.session.commit()
+        return jsonify(data=post.serialize())
