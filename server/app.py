@@ -2,20 +2,20 @@ import os
 
 from flask import Flask
 
-from server.extensions import db
+from server.extensions import cors, db
 
 
 class Application(object):
 
     def __init__(self, config=None):
         self.config = config
-        self.app = Flask(__name__)
+        self.app = Flask(__name__, template_folder='../templates', static_folder='../static')
         self.configure_app()
         self.configure_extensions()
         self.configure_routes()
 
     def configure_app(self):
-        self.app.config.from_object('server.config.config')
+        self.app.config.from_object('server.config')
         if self.config is not None:
             self.app.config.from_object(self.config)
 
@@ -34,6 +34,9 @@ class Application(object):
     def configure_extensions(self):
         self.db = db
         self.db.init_app(self.app)
+
+        self.cors = cors
+        self.cors.init_app(self.app)
 
     def configure_routes(self):
         self.app.url_map.strict_slashes = False

@@ -4,10 +4,10 @@ from datetime import datetime
 
 
 class Post(db.Model):
-    id = db.Column(db.Integer, primery_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     content = db.Column(db.Text)
-    pub_date = db.Column(db.datetime)
+    pub_date = db.Column(db.DateTime)
 
     def __init__(self, title, content, pub_date=None):
         self.title = title
