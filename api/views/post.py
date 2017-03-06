@@ -4,8 +4,8 @@ from flask.views import MethodView
 
 from sqlalchemy import desc
 
-from server.extensions import db
-from server.models.post import Post
+from extensions import db
+from models.post import Post
 
 
 class PostView(MethodView):

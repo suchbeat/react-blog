@@ -1,5 +1,5 @@
-from server.views.index import IndexView
-from server.views.post import PostView
+from views.index import IndexView
+from views.post import PostView
 
 post_view = PostView.as_view('posts')
 

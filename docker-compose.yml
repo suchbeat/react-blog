@@ -1,0 +1,25 @@
+version: '2'
+services:
+  api:
+    build: ./api
+    ports:
+     - "5000:5000"
+    depends_on:
+     - db
+    volumes:
+     - ./api:/api
+  ui:
+    build: ./ui
+    ports:
+     - "3000:3000"
+    volumes:
+     - ./ui:/ui
+  db:
+    image: mysql
+    ports:
+     - "13306:3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_USER=user
+     - MYSQL_PASSWORD=secret
+     - MYSQL_DATABASE=react_blog

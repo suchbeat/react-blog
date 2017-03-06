@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 
-from server.extensions import cors, db
+from extensions import cors, db
 
 
 class Application(object):
@@ -15,7 +15,7 @@ class Application(object):
         self.configure_routes()
 
     def configure_app(self):
-        self.app.config.from_object('server.config')
+        self.app.config.from_object('config')
         if self.config is not None:
             self.app.config.from_object(self.config)
 
@@ -42,7 +42,7 @@ class Application(object):
         self.app.url_map.strict_slashes = False
 
         with self.app.app_context():
-            from .routes import ROUTES
+            from routes import ROUTES
             for rule, view, kwargs in ROUTES:
                 self.app.add_url_rule(rule, view_func=view, **kwargs)
 

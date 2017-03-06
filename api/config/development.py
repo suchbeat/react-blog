@@ -1,8 +1,8 @@
-DEBUG = False
+DEBUG = True
 
-DB_USER = 'root'
-DB_PASSWORD = ''
-DB_HOST = 'localhost'
+DB_USER = 'user'
+DB_PASSWORD = 'secret'
+DB_HOST = 'db'
 DB_NAME = 'react_blog'
 DB_PORT = 3306
 
