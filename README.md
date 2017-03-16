@@ -30,7 +30,7 @@ To start applications with development environment:
 
 To upgrade your database with migration:
 
-- ```docker exec -it reactblog_api_1 bash -c "python manage.py db upgrade"```
+- ```docker-compose run api python manage.py db upgrade```
 
 ### Stop and destroy a cluster
 
